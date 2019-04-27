@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!--	 Modifcation Log	 -->
+<!-- Name		Date		Info -->
+<!---------------------------------> 
+<!-- Van - 4/12/2019 - Initial Deplotment -->
+<!-- Van - 4/13/2019 - Added navigation -->
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+	<link rel="StyleSheet" type="text/css" href="css/styles.css">
+
+    <title>Disk Inventory</title>
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+	<header>
+		<img src="images/disklogo.svg" alt="Disk Inventory Logo" class="image"/>
+
+		<nav>
+			<ul>
+			  <li><a href="default.aspx">Home</a></li>
+			  <li><a href="Borrower.aspx">Borrower</a></li>
+			  <li><a href="Compact_Disk.aspx">Disk</a></li>
+			  <li><a href="Artist.aspx">Artist</a></li>
+			</ul>
+		</nav>
+    </header>	
+	<br />
+   
+    <div>
+        <asp:ContentPlaceHolder id="BodyContent" runat="server">        
+        </asp:ContentPlaceHolder>
+    </div>
+   
+	<br />
+
+	<br />
+	<footer style="font-size: 0.75em;">
+			<hr style="width: 40%; height:3px; text-align:center;"/>
+            <p style="font-size: 0.75em;">&copy; <asp:Label ID="lblYear" runat="server" ></asp:Label> 
+                Disk Inventory Site</p>
+    </footer>
+</body>
+
+</html>
