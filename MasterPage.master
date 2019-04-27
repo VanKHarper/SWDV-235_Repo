@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!--	 Modifcation Log	 -->
+<!-- Name		Date		Info -->
+<!---------------------------------> 
+<!-- Van - 4/12/2019 - Initial Deplotment -->
+<!-- Van - 4/13/2019 - Added navigation -->
+<!-- Van - 4/14/2019 - Removed navigation inline styles -->
+<!-- Van - 4/24/2019 - Edited inline Style -->
+<!-- Van - 4/25/2019 - Update Navigation for Compact_Disk -->
+<!-- Van - 4/26/2019 - Fixed minor styling issues and added commenting-->
+
+
+<%--	DOC TYPE DECLARTION AND HEAD TAG	--%>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+
+	<link rel="StyleSheet" type="text/css" href="css/styles.css">
+
+    <title>Disk Inventory</title>
+    <asp:ContentPlaceHolder id="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+	<header>
+		<%--	Corner Logo		--%>
+		<img src="images/disklogo.svg" alt="Disk Inventory Logo" class="image"/>
+
+			<%--	NAV     --%>
+		<nav>
+			<ul>
+			  <li><a href="default.aspx">Home</a></li>
+			  <li><a href="Borrower.aspx">Borrower</a></li>
+			  <li><a href="Compact_Disk.aspx">Disk</a></li>
+			  <li><a href="Artist.aspx">Artist</a></li>
+			</ul>
+		</nav>
+    </header>	
+	<br />
+	
+    <div>		<%--     CONTENT PLACEHOLDER     --%>
+        <asp:ContentPlaceHolder id="BodyContent" runat="server">        
+        </asp:ContentPlaceHolder>
+    </div>
+   
+	<br />
+
+	<br />		<%--     FOOTER     --%>
+	<footer style="font-size: 0.75em;">
+			<hr style="width: 40%; height:3px; text-align:center;"/>
+            <p style="font-size: 0.75em;">&copy; <asp:Label ID="lblYear" runat="server" ></asp:Label> 
+                Disk Inventory Site</p>
+    </footer>
+</body>
+
+</html>
