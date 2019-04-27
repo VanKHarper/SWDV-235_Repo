@@ -1,0 +1,175 @@
+﻿/**
+<!--	 Modifcation Log	 -->
+<!-- Name		Date		Info -->
+<!---------------------------------> 
+<<!-- Van - 4/12/2019 - Initial Deplotment -->
+<<!-- Van - 4/13/2019 - Added Media Queries -->
+*/
+
+body {
+	background-color: #d3d3d3;
+	color: #070707;
+	font-family: Helvetica, Arial, sans-serif;	
+}
+
+footer {
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+nav {	
+	margin-left: 40%;
+}
+
+nav ul {
+	list-style-type: none;
+	padding: 0;
+	display: inline;
+	margin-right: 2em;
+}
+
+nav a {
+	display: block;
+	padding: 10px;
+	background-color: #dddddd;
+}
+
+nav li {
+	float: left;
+}
+
+/* Changes color of visited links */
+	nav li a:visited {
+		color: #484848;
+	}
+
+/* Adds color to link on hover */
+	nav li a:hover {
+		background-color: #484848;
+		color: #F5F5F5;
+	}
+
+	
+/** Opening bracket for Cell Query*/
+@media only screen and (max-width: 600px) {
+
+	body {
+		font-size: 0.8em;		
+		text-align: center;
+		display: inline-block;
+	}
+
+		body form {
+			margin-left: 2%;
+		}
+
+	nav {
+		margin-left: 5%;
+	}
+
+	.image {
+		min-width: 3em;
+		height: auto;
+		font-size: .8em;
+		margin-top: .5em;
+		float: left;
+	}
+
+	h1 {
+		font-size: 1.1em;
+		margin-left: 1%;
+	}
+
+	h2 {
+		font-size: 0.95em;
+	
+	}
+
+	nav ul {
+		display: inline-block;
+	}
+
+	nav a {		
+		padding: 8px;		
+	}
+
+
+	footer {
+		margin-left: 40%;
+	}
+}/** Closing bracket for Cell Query*/
+
+
+/** Opening bracket for Tablet Query*/
+@media only screen and (min-width: 600px) and (max-width: 950px) {
+
+	body {
+		font-size: 1.2em;		
+	}
+
+	body form {
+			margin-left: 3%;
+			text-align: left;
+		}
+
+	.image {
+		min-width: 4em;
+		height: auto;
+		margin-top: .1em;
+	}
+
+	nav {
+		margin-left: 35%;
+	}
+
+
+	h1 {
+		font-size: 1.45em;
+		margin-left: 1%;
+	}
+
+	h2 {
+		font-size: 1.3em;
+		margin-left: 1%;
+	}
+
+}/** Closing bracket for Tablet Query*/
+
+
+/** Opening bracket for PC Query*/
+@media only screen and (min-width: 950px) {
+
+	body {
+		font-size: 1.5em;				
+	}
+
+		body form {
+			margin-left: 1%;
+			text-align: Left;
+		}
+
+	.image {
+		min-width: 5em;
+		height: auto;
+		margin-top: 1em;
+	}
+
+	h1 {
+		font-size: 3em;
+		margin-left: 1%;
+		text-align:center;
+	}
+
+	h2 {
+		font-size: 2.25em;
+		margin-left: -38.5%;
+	}
+
+}/** Closing bracket for PC Query*/
