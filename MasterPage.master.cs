@@ -16,7 +16,8 @@ using System.Web.UI.WebControls;
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     // Sets Up the copyright year in the Footer
-    private string currentYear = DateTime.Today.Year.ToString();
+    private string currentYear = DateTime.Today.Year.ToString();  
+
 
     protected void Page_Load(object sender, EventArgs e)
     {

@@ -35,6 +35,8 @@
 			  <li><a href="Borrower.aspx">Borrower</a></li>
 			  <li><a href="Compact_Disk.aspx">Disk</a></li>
 			  <li><a href="Artist.aspx">Artist</a></li>
+			  <li><a href="Checkout.aspx">Disk Checkout</a></li>
+			  <li><a href="Checkout_Report.aspx">Checkout Report</a></li>
 			</ul>
 		</nav>
     </header>	

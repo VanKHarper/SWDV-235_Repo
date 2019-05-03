@@ -129,7 +129,7 @@
                     <EditRowStyle CssClass="warning" />
                 </asp:GridView>
 
-				<%--	SELCET COMMANDS		--%>
+				<%--	SELCET, DELETE, AND UPDATE COMMANDS		--%>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server"
                     ConnectionString="<%$ ConnectionStrings:DiskConnection %>"
                     ConflictDetection="CompareAllValues" 
@@ -175,7 +175,7 @@
                         <asp:Parameter Name="original_Artist_LName" Type="String"></asp:Parameter>
                     </UpdateParameters>
                 </asp:SqlDataSource>                  
-			
+				
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server"
                     HeaderText="Please correct the following errors:" 
                     ValidationGroup="Edit" CssClass="text-danger" />  
@@ -230,7 +230,7 @@
                         </asp:RequiredFieldValidator>
                     </div>
                 </div>
-			</br>
+			<br/>
                 <asp:Button ID="btnAdd" runat="server" Text="Add New Category" 
                     CssClass="btn" OnClick="btnAdd_Click" Height="30px" Width="170px" />
             </div> 
