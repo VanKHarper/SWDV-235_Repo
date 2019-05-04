@@ -20,13 +20,19 @@
 <!-- Van - 4/22/2019 - fixed issue with insert ID -->
 <!-- Van - 4/23/2019 - Fixed select statements -->
 <!-- Van - 4/24/2019 - Corrected Styling issues -->
-<!-- Van - 4/26/2019 - Fixed issue with Select command on Disk_Genre-->
+<!-- Van - 4/26/2019 - Fixed issue with Select command on Disk_Genre -->
 <!-- Van - 4/26/2019 - Fixed issue with Code Behind IDs -->
-<!-- Van - 4/26/2019 - Fixed minor styling issues and added commenting-->
+<!-- Van - 4/26/2019 - Fixed minor styling issues and added commenting -->
+<!-- Van - 5/02/2019 - Fixed Margins in CSS -->
+<!-- Van - 5/04/2019 - Added a DateTime mode to the Date Released EditTemplate -->
+<!-- Van - 5/04/2019 - Added DropDownLists to the Disk_Status, Disk_Type, and Disk_Genre EditTemplates -->
+<!-- Van - 5/04/2019 - Corrected RequiredField Error Message Text -->
+
 --%>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+
 	<title>Disk Page</title>
 	<style type="text/css">
 		.form-control {}
@@ -37,10 +43,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BodyContent" Runat="Server">
 
 	<%--Form for the GridView and Inputs--%>
-	<form id="form1" runat="server" class="form-horizontal">
+	<form id="form1" runat="server" class="form-horizontal" style="text-align:left; display:inline-block;">
 
             <div class="col-xs-12 table-responsive">
-                <h1>Disks Category Maintenance</h1> 
+                <h3>Disks Category Maintenance</h3> 
                 <asp:GridView ID="grd_Disk" name="grd_Disk" runat="server"
                     AutoGenerateColumns="False" DataKeyNames="Disk_id"
                     DataSourceID="SqlDataSource1"
@@ -72,19 +78,22 @@
                                     Text='<%# Bind("Disk_Name") %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle CssClass="col-xs-4" />
-                        </asp:TemplateField>                       
+                        </asp:TemplateField>  
+                        
 
 							<%-- DISK TYPE--%>
 						 <asp:TemplateField HeaderText="Disk Type">
                             <EditItemTemplate>
                                 <div class="col-xs-11 col-edit">
-                                    <asp:TextBox ID="txtGridDisk_Type" runat="server" 
-                                        MaxLength="15" CssClass="form-control"  
-                                        Text='<%# Bind("Disk_Type") %>'></asp:TextBox>
+                                  <asp:DropDownList ID="Disk_Type_DropDownList2" Text='<%# Bind("Disk_Type") %>' runat="server" Height="34px" Width="90px">
+								            <asp:ListItem>CD</asp:ListItem>
+								            <asp:ListItem>Vinyl</asp:ListItem>
+								            <asp:ListItem>Casset-Tape</asp:ListItem>
+						       	</asp:DropDownList>                                        
                                 </div>
-                                <asp:RequiredFieldValidator ID="rfvGridDisk_Type" runat="server" 
-                                    ControlToValidate="txtGridDisk_Type" ValidationGroup="Edit" 
-                                    ErrorMessage="Short Name is a required field" Text="*"
+                                <asp:RequiredFieldValidator ID="rfvGridDisk_Type2" runat="server" 
+                                    ControlToValidate="Disk_Type_DropDownList2" ValidationGroup="Edit" 
+                                    ErrorMessage="Disk Typed is a required field" Text="*"
                                     CssClass="text-danger"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
@@ -98,13 +107,17 @@
 						 <asp:TemplateField HeaderText="Disk Genre">
                             <EditItemTemplate>
                                 <div class="col-xs-11 col-edit">
-                                    <asp:TextBox ID="txtGridDisk_Genre" runat="server" 
-                                        MaxLength="15" CssClass="form-control"  
-                                        Text='<%# Bind("Disk_Genre") %>'></asp:TextBox>
+                                 <asp:DropDownList ID="Disk_Genre_DropDownList2" Text='<%# Bind("Disk_Genre") %>' runat="server" Height="34px" Width="88px">
+								        <asp:ListItem Value="Rap">Rap</asp:ListItem>
+								        <asp:ListItem Value="Rock">Rock</asp:ListItem>
+								        <asp:ListItem Value="Alt-Rock">Alt-Rock</asp:ListItem>
+								        <asp:ListItem Value="Pop">Pop</asp:ListItem>
+								        <asp:ListItem Value="Country">Country</asp:ListItem>
+						        </asp:DropDownList>                                        
                                 </div>
                                 <asp:RequiredFieldValidator ID="rfvGridDisk_Genre" runat="server" 
-                                    ControlToValidate="txtGridDisk_Genre" ValidationGroup="Edit" 
-                                    ErrorMessage="Short Name is a required field" Text="*"
+                                    ControlToValidate="Disk_Genre_DropDownList2" ValidationGroup="Edit" 
+                                    ErrorMessage="Disk Genre is a required field" Text="*"
                                     CssClass="text-danger"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
@@ -119,13 +132,17 @@
 						<asp:TemplateField HeaderText="Disk Status">
                             <EditItemTemplate>
                                 <div class="col-xs-11 col-edit">
-                                    <asp:TextBox ID="txtGridDisk_Status" runat="server" 
-                                        MaxLength="15" CssClass="form-control"  
-                                        Text='<%# Bind("Disk_Status") %>'></asp:TextBox>
+                                   <asp:DropDownList ID="Disk_Status_DropDownList2" Text='<%# Bind("Disk_Status") %>' runat="server" Height="35px">
+							            <asp:ListItem Value="In-Stock">In-Stock</asp:ListItem>
+							            <asp:ListItem Value="Out-of-Stock">Out-of-Stock</asp:ListItem>
+							            <asp:ListItem>On-Hold</asp:ListItem>
+							            <asp:ListItem>Status-Unknown</asp:ListItem>
+						             </asp:DropDownList>
+                                        
                                 </div>
                                 <asp:RequiredFieldValidator ID="rfvGridDisk_Status" runat="server" 
-                                    ControlToValidate="txtGridDisk_Status" ValidationGroup="Edit" 
-                                    ErrorMessage="Short Name is a required field" Text="*"
+                                    ControlToValidate="Disk_Status_DropDownList2" ValidationGroup="Edit" 
+                                    ErrorMessage="Disk Status is a required field" Text="*"
                                     CssClass="text-danger"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
@@ -140,12 +157,12 @@
                             <EditItemTemplate>
                                 <div class="col-xs-11 col-edit">
                                     <asp:TextBox ID="txtGridrelease_date" runat="server" 
-                                        MaxLength="15" CssClass="form-control"  
+                                        MaxLength="15" CssClass="form-control"  TextMode="Date"
                                         Text='<%# Bind("release_date") %>'></asp:TextBox>
                                 </div>
                                 <asp:RequiredFieldValidator ID="rfvGridrelease_date" runat="server" 
                                     ControlToValidate="txtGridrelease_date" ValidationGroup="Edit" 
-                                    ErrorMessage="Short Name is a required field" Text="*"
+                                    ErrorMessage="Release Date is a required field" Text="*"
                                     CssClass="text-danger"></asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
@@ -238,6 +255,7 @@
                     ValidationGroup="Edit" CssClass="text-danger" />  
             </div>
 
+            <br />
             <div class="col-xs-9">
                 <p>To create a new category, enter the information 
                     and click Add New Category</p>
@@ -245,6 +263,7 @@
                         CssClass="text-danger"></asp:Label></p>
 				</div>
 
+                    <br />
                 <div class="form-group">
                     <label for="Disk_Status_DropDownList" class="col-sm-2">Disk Status:</label>			
                     <div class="col-sm-3">
@@ -257,6 +276,7 @@
 						</asp:DropDownList>
 						</label>
                     </div>   
+                       
 					<div class="col-sm-offset-3 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvStatus" runat="server" 
                             ControlToValidate="Disk_Status_DropDownList" CssClass="text-danger" Display="Dynamic" 
@@ -264,7 +284,7 @@
                         </asp:RequiredFieldValidator>
                     </div>
 				</div> 
-
+                        <br />
 					<div class="form-group">
 						<label for="Disk_Genre_DropDownList" class="col-sm-2">Disk Genre:</label>
 						<div class="col-sm-3">
@@ -278,6 +298,7 @@
 							</asp:DropDownList>
 						</label>
                     </div>
+                     
                     <div class="col-sm-offset-3 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvGenre" runat="server" 
                             ControlToValidate="Disk_Genre_DropDownList" CssClass="text-danger" Display="Dynamic" 
@@ -286,7 +307,8 @@
                     </div>
                 </div>
 
-						<div class="form-group">
+                        <br />
+					<div class="form-group">
 						<label for="Disk_Type_DropDownList" class="col-sm-2">Disk Type:</label>
 						<div class="col-sm-3">
 						<label for="Disk_Type_DropDownList" class="col-sm-2">
@@ -297,6 +319,7 @@
 							</asp:DropDownList>
 						</label>
                     </div>
+                        
                     <div class="col-sm-offset-3 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvType" runat="server" 
                             ControlToValidate="Disk_Type_DropDownList" CssClass="text-danger" Display="Dynamic" 
@@ -305,20 +328,21 @@
                     </div>
                 </div>
 
-
+                    <br />
                 <div class="form-group">
                     <label for="txtDisk_Name" class="col-sm-2">Disk Name:</label>
                     <div class="col-sm-4">
                         <asp:TextBox ID="txtDisk_Name" runat="server" MaxLength="70" 
-                            CssClass="form-control" Width="200px"></asp:TextBox>
+                            CssClass="form-control" Width="200px" Height="30px"></asp:TextBox>
                     </div>
+                       
                     <div class="col-sm-offset-2 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvDisk_Name" runat="server" 
                         ControlToValidate="txtDisk_Name" CssClass="text-danger" Display="Dynamic" 
                         ErrorMessage="Disk  Name is a required field"></asp:RequiredFieldValidator>
                     </div>
                 </div>              		
-				
+				    <br />
 				 <div class="form-group">
                     <label for="Disk_Calendar" class="col-sm-2">Date Released:</label>
                     <div class="col-sm-6">
@@ -326,7 +350,7 @@
                     </div>                   
 				</div>
 				<asp:CustomValidator ID="cvDisk_Calendar" runat="server" ErrorMessage="You must select a date" ClientValidationFunction="CheckDate" />
-			</br>
+			<br />
                 <asp:Button ID="btnAdd" runat="server" Text="Add New Category" 
                     CssClass="btn" OnClick="btnAdd_Click" Height="30px" Width="150px" />
             

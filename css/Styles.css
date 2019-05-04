@@ -25,7 +25,7 @@ h2 {
 }
 
 nav {	
-	margin-left: 40%;
+	margin-left: 30%;
 }
 
 nav ul {
@@ -61,17 +61,17 @@ nav li {
 @media only screen and (max-width: 600px) {
 
 	body {
-		font-size: 0.8em;		
+		font-size: 0.75em;		
 		text-align: center;
 		display: inline-block;
 	}
 
 		body form {
-			margin-left: 2%;
+			margin-left: 3%;
 		}
 
 	nav {
-		margin-left: 5%;
+		margin-left: 4%;
 	}
 
 	.image {
@@ -92,6 +92,13 @@ nav li {
 	
 	}
 
+	h3 {
+		font-size: .9em;
+		margin-left: .5%;
+		font-weight: 700;
+	}
+
+
 	nav ul {
 		display: inline-block;
 	}
@@ -111,12 +118,13 @@ nav li {
 @media only screen and (min-width: 600px) and (max-width: 950px) {
 
 	body {
-		font-size: 1.2em;		
+		font-size: 1.1em;		
 	}
 
-	body form {
-			margin-left: 3%;
-			text-align: left;
+		body form {
+			margin-left: 3.8%;
+			text-align: Center;
+			display: inline-block;
 		}
 
 	.image {
@@ -131,13 +139,23 @@ nav li {
 
 
 	h1 {
-		font-size: 1.45em;
+		font-size: 1.55em;
 		margin-left: 1%;
+		font-weight: 800;
+		margin-top: 2%;
 	}
 
 	h2 {
-		font-size: 1.3em;
+		font-size: 1.4em;
 		margin-left: 1%;
+		margin-top: 2%;
+	}
+
+	h3 {
+		font-size: 1.2em;
+		margin-left: .5%;
+		font-weight: 700;
+		margin-top: 2%;
 	}
 
 }/** Closing bracket for Tablet Query*/
@@ -151,8 +169,9 @@ nav li {
 	}
 
 		body form {
-			margin-left: 1%;
-			text-align: Left;
+			margin-left: 5%;
+			text-align: center;
+			display:inline-flex;
 		}
 
 	.image {
@@ -164,12 +183,23 @@ nav li {
 	h1 {
 		font-size: 3em;
 		margin-left: 1%;
-		text-align:center;
+		text-align: center;
+		font-weight: 800;
+		margin-top: 2%;
 	}
 
 	h2 {
+		margin-top: 2%;
 		font-size: 2.25em;
 		margin-left: -38.5%;
 	}
+
+	h3 {
+		margin-top: 2%;
+		font-size: 1.75em;
+		margin-left: .5%;
+		font-weight: 700;
+	}
+
 
 }/** Closing bracket for PC Query*/

@@ -24,12 +24,13 @@
 <!-- Van - 4/26/2019 - Fixed issue with Select command on Disk_Genre-->
 <!-- Van - 4/26/2019 - Fixed issue with Code Behind IDs -->
 <!-- Van - 4/26/2019 - Fixed minor styling issues and added commenting-->
+<!-- Van - 5/2/2019 - Update Margin in CSS-->
 --%>
 
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-	<title>Borrower Page</title>
+    <title>Borrower Page</title>
 	<style type="text/css">
 		.form-control {}
 		.btn {}
@@ -42,7 +43,7 @@
 	 <form id="form1" runat="server" class="form-horizontal">
 
             <div class="col-xs-12 table-responsive">
-                <h1>Borrowers Category Maintenance</h1>
+                <h3>Borrowers Category Maintenance</h3>
                 <asp:GridView ID="Borrower_grdBorrower" runat="server"
                     AutoGenerateColumns="False" DataKeyNames="Borrower_id"
                     DataSourceID="SqlDataSource1"
@@ -182,6 +183,7 @@
                     ValidationGroup="Edit" CssClass="text-danger" />  
             </div>
 
+            <br />
             <div class="col-xs-9">
                 <p>To create a new category, enter the information 
                     and click Add New Category</p>
@@ -193,7 +195,7 @@
                     <label for="txtFirstName" class="col-sm-2">First Name:</label>
                     <div class="col-sm-4">
                         <asp:TextBox ID="txtFirstName" runat="server" MaxLength="35" 
-                            CssClass="form-control" Width="142px"></asp:TextBox>
+                            CssClass="form-control" Width="142px" Height="28px"></asp:TextBox>
                     </div>
                     <div class="col-sm-offset-2 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
@@ -201,13 +203,14 @@
                         ErrorMessage="First Name is a required field">
                         </asp:RequiredFieldValidator>
                     </div>
-                </div>     
+                </div>   
+                <br />
 				
                 <div class="form-group">
                     <label for="txtLastName" class="col-sm-2">Last Name:</label>
                     <div class="col-sm-6">
                         <asp:TextBox ID="txtLastName" runat="server" MaxLength="70" 
-                            CssClass="form-control" Width="170px"></asp:TextBox>
+                            CssClass="form-control" Width="170px" Height="28px"></asp:TextBox>
                     </div>
                     <div class="col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvLastName" runat="server" 
@@ -215,11 +218,12 @@
                         ErrorMessage="Last Name is a required field"></asp:RequiredFieldValidator>
                     </div>
                 </div>
+                 <br />
 
 				 <div class="form-group">
                     <label for="txt_phone_num" class="col-sm-2">Phone Number:</label>
                     <div class="col-sm-3">
-                    	<asp:TextBox ID="txt_phone_num"  MaxLength="20" runat="server" Width="166px"></asp:TextBox>
+                    	<asp:TextBox ID="txt_phone_num"  MaxLength="20" runat="server" Width="166px" Height="28px"></asp:TextBox>
                     </div>
                     <div class="col-sm-offset-3 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvPhone" runat="server" 
@@ -228,7 +232,7 @@
                         </asp:RequiredFieldValidator>
                     </div>
                 </div>
-			</br>
+			<br />
                 <asp:Button ID="btnAdd" runat="server" Text="Add New Category" 
                     CssClass="btn" OnClick="btnAdd_Click" Height="33px" Width="174px" />
             </div>  
