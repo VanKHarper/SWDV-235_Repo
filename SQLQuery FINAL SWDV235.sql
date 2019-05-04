@@ -1,5 +1,5 @@
 -- Drops Disk_DB and re-creates it --
-USE AP
+USE master
 GO
 DROP DATABASE if exists Disk_DB
 GO
@@ -44,7 +44,7 @@ create TABLE borrower
 		borrower_id int not null identity primary key,
 		FirstName varchar(100) not null,
 		LastName varchar(100) not null,
-		phone_num varchar(50) not null
+		phone_num varchar(50)
 	)
 go
 
@@ -64,7 +64,7 @@ create TABLE compact_disk
 		Disk_Genre varchar(100)  not null ,
 		Disk_Type varchar(100) not null ,
 		disk_name varchar(100) not null,
-		release_date datetime not null
+		release_date date not null
 	)
 go
 
@@ -80,9 +80,9 @@ create TABLE disk_has_borrower
 	(
 		disk_borrower_id int not null foreign key references borrower(borrower_id),		
 		disk_id int not null foreign key references compact_disk(disk_id),
-		borrowed_date datetime not null,	
-		expected_date datetime not null,
-		returned_date datetime null,
+		borrowed_date date not null,	
+		expected_date date null,
+		returned_date date null,	
 		times_borrowed int null,
 		primary key (borrowed_date, disk_borrower_id, disk_id)	
 	)
@@ -259,21 +259,145 @@ INSERT into [dbo].[disk_has_borrower]
 		,(20, 20, '3/8/2019', '3/22/2019', NULL, 3)			
 GO
 
----- Selects the borrowed disks that have null values --
---SELECT disk_borrower_id, disk_id, borrowed_date FROM disk_has_borrower
---	WHERE returned_date is NULL
---GO
 
 
----- Select command for DEBUGGING --
---SELECT * FROM disk_has_borrower
---GO
+
+
+--==	 VIEWS and PROCEDURES	  ==--
+USE Disk_DB
+GO
+
+-- Updates Disk_Status in compact_disk --
+DROP PROCEDURE IF EXISTS INS_DiskStatusChanger
+GO
+
+CREATE PROCEDURE INS_DiskStatusChanger		
+	@disk_status varchar(100),
+	@disk_id2 int
+		AS
+			BEGIN TRY
+				UPDATE [dbo].[compact_disk]
+					SET [Disk_Status] = @disk_status											
+					Where disk_id = @disk_id2
+			END TRY
+		BEGIN CATCH
+			PRINT 'An error occured'
+			PRINT 'Message: ' + CONVERT(varchar(200), Error_Message())
+		END Catch
+GO
+
+
+-- Updates Borrower_ID in Disk_Has_Borrower --
+DROP PROCEDURE IF EXISTS INS_DiskBorrowerIDChanger	
+GO
+
+CREATE PROCEDURE INS_DiskBorrowerIDChanger	
+	@Disk_Borrower_ID2 int,
+	@Disk_Borrower_ID3 int
+	
+		AS
+			BEGIN TRY
+				UPDATE [dbo].[disk_has_borrower]
+					SET [disk_borrower_id] = @Disk_Borrower_ID2											
+					Where @Disk_Borrower_ID3 = disk_id
+			END TRY
+		BEGIN CATCH
+			PRINT 'An error occured'
+			PRINT 'Message: ' + CONVERT(varchar(200), Error_Message())
+		END Catch
+GO
+
+
+-- Inserts into Disk_Has_Borrower --
+DROP PROCEDURE IF EXISTS INS_Disk_Has_Borrower
+GO
+
+CREATE PROCEDURE INS_Disk_Has_Borrower
+	@Disk_Borrower_ID int,
+	@Disk_ID int,	
+	@Borrowed_Date DateTime,
+	@Expected_Date DateTime
+AS
+
+BEGIN TRY
+	INSERT INTO [dbo].[disk_has_borrower]
+		([Disk_Borrower_ID]
+		,[Disk_ID]		
+		,[Borrowed_Date]
+		,[Expected_Date])
+	VALUES
+		(@Disk_Borrower_ID
+		,@Disk_ID	
+		,@Borrowed_Date
+		,@Expected_Date)
+END TRY
+
+	BEGIN CATCH
+		PRINT 'An error occured.'
+		PRINT 'Message: ' + CONVERT(varchar, ERROR_MESSAGE())
+	END CATCH
+GO
+
+
+---- Drops and re-Creates the DEL_DiskHasBorrower Procedure --
+DROP PROCEDURE IF EXISTS DEL_DiskHasBorrower
+GO
+
+-- Deletes a Old Disk from the disk_has_boorrower Table --
+CREATE PROCEDURE DEL_DiskHasBorrower	
+	@DEL_disk_id int	
+		AS
+			BEGIN TRY
+				DELETE [dbo].[disk_has_borrower]			
+				WHERE disk_id = @DEL_disk_id
+			END TRY
+		BEGIN CATCH
+			PRINT 'An error occured'
+			PRINT 'Message: ' + CONVERT(varchar(200), Error_Message())
+		END Catch
+GO
+
+
+-- View to combine FirstName and LastName  --
+DROP VIEW IF EXISTS BorrowerNames_View
+GO
+
+CREATE VIEW BorrowerNames_View  AS
+	SELECT *, CONCAT(FIRSTNAME, ' ', LASTNAME) 'BorrowerNames'
+	FROM borrower;
+GO
+
+
+-- View for In-Stock books --
+DROP VIEW IF EXISTS InStock_View
+GO
+
+CREATE VIEW InStock_View
+AS
+	SELECT disk_name, disk_id, disk_status
+	FROM  compact_disk
+	WHERE disk_status = 'In-Stock'
+GO
+
+
+-- View for Checked Out books --
+DROP VIEW IF EXISTS CheckOutReport_View
+GO
+
+CREATE VIEW CheckOutReport_View
+AS
+	SELECT  BorrowerNames, disk_name, borrowed_date, expected_date, returned_date, disk_status, disk_has_borrower.disk_id, disk_borrower_id
+	FROM  disk_has_borrower, compact_disk, BorrowerNames_View 	
+	WHERE disk_status != 'In-Stock'
+	AND compact_disk.disk_id = disk_has_borrower.disk_id AND borrower_id = disk_borrower_id 
+GO
+
 
 -- Switches to Using Master --
 USE master
 GO
 
--- Stores Login Info --
+-- Login Info --
 if SUSER_ID('diskUsermm') is not null
 	drop login diskUsermm
 go
@@ -291,3 +415,24 @@ go
 go
 
 
+----	 OLD Select commands for DEBUGGING	 ----
+
+---- Selects the borrowed disks that have null values --
+--SELECT disk_borrower_id, disk_id, borrowed_date FROM disk_has_borrower
+--	WHERE returned_date is NULL
+--GO
+
+--SELECT * FROM disk_has_borrower
+--GO
+
+--SELECT * FROM CheckOutReport_View
+--GO
+
+--SELECT * FROM BorrowerNames_View
+--GO
+
+--Select * FROM compact_disk
+--GO
+
+--Select * FROM disk_has_borrower
+--GO
