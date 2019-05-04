@@ -129,7 +129,7 @@
                     <EditRowStyle CssClass="warning" />
                 </asp:GridView>
 
-				<%--	SELCET COMMANDS		--%>
+				<%--	SELCET, DELETE, AND UPDATE COMMANDS		--%>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server"
                     ConnectionString="<%$ ConnectionStrings:DiskConnection %>"
                     ConflictDetection="CompareAllValues" 
@@ -175,7 +175,7 @@
                         <asp:Parameter Name="original_Artist_LName" Type="String"></asp:Parameter>
                     </UpdateParameters>
                 </asp:SqlDataSource>                  
-			
+				
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server"
                     HeaderText="Please correct the following errors:" 
                     ValidationGroup="Edit" CssClass="text-danger" />  
@@ -197,12 +197,14 @@
 						</asp:DropDownList>
 						</label>
                     </div>
+                       
                     <div class="col-sm-offset-3 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvArtist_DropDownList" runat="server" 
                             ControlToValidate="Artist_DropDownList" CssClass="text-danger" Display="Dynamic" 
                             ErrorMessage="Please select an Artist Type">
                         </asp:RequiredFieldValidator>
                     </div>
+                <br />
                 </div>
                 <div class="form-group">
                     <label for="txtArtist_FName" class="col-sm-2">First Name:</label>
@@ -210,12 +212,14 @@
                         <asp:TextBox ID="txtArtist_FName" runat="server" MaxLength="35" 
                             CssClass="form-control" Width="140px" ></asp:TextBox>
                     </div>
+                   
                     <div class="col-sm-offset-2 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvArtist_FName" runat="server" 
                         ControlToValidate="txtArtist_FName" CssClass="text-danger" Display="Dynamic" 
                         ErrorMessage="Please enter a First Name">
                         </asp:RequiredFieldValidator>
                     </div>
+                <br />
                 </div>              
                 <div class="form-group">
                     <label for="txtArtist_LName" class="col-sm-2">Last Name:</label>
@@ -223,14 +227,17 @@
                         <asp:TextBox ID="txtArtist_LName" runat="server" MaxLength="70" 
                             CssClass="form-control" Width="181px"></asp:TextBox>
                     </div>
+
                     <div class="col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvArtist_LName" runat="server" 
                         ControlToValidate="txtArtist_LName" CssClass="text-danger" Display="Dynamic" 
                         ErrorMessage="Please enter a Last Name.">
                         </asp:RequiredFieldValidator>
                     </div>
+
+                    <br />
                 </div>
-			</br>
+			<br/>
                 <asp:Button ID="btnAdd" runat="server" Text="Add New Category" 
                     CssClass="btn" OnClick="btnAdd_Click" Height="30px" Width="170px" />
             </div> 

@@ -27,6 +27,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+
 	<title>Disk Page</title>
 	<style type="text/css">
 		.form-control {}
@@ -72,7 +73,8 @@
                                     Text='<%# Bind("Disk_Name") %>'></asp:Label>
                             </ItemTemplate>
                             <ItemStyle CssClass="col-xs-4" />
-                        </asp:TemplateField>                       
+                        </asp:TemplateField>  
+                        
 
 							<%-- DISK TYPE--%>
 						 <asp:TemplateField HeaderText="Disk Type">
@@ -245,6 +247,7 @@
                         CssClass="text-danger"></asp:Label></p>
 				</div>
 
+                    <br />
                 <div class="form-group">
                     <label for="Disk_Status_DropDownList" class="col-sm-2">Disk Status:</label>			
                     <div class="col-sm-3">
@@ -257,6 +260,7 @@
 						</asp:DropDownList>
 						</label>
                     </div>   
+                       
 					<div class="col-sm-offset-3 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvStatus" runat="server" 
                             ControlToValidate="Disk_Status_DropDownList" CssClass="text-danger" Display="Dynamic" 
@@ -264,7 +268,7 @@
                         </asp:RequiredFieldValidator>
                     </div>
 				</div> 
-
+                        <br />
 					<div class="form-group">
 						<label for="Disk_Genre_DropDownList" class="col-sm-2">Disk Genre:</label>
 						<div class="col-sm-3">
@@ -278,6 +282,7 @@
 							</asp:DropDownList>
 						</label>
                     </div>
+                     
                     <div class="col-sm-offset-3 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvGenre" runat="server" 
                             ControlToValidate="Disk_Genre_DropDownList" CssClass="text-danger" Display="Dynamic" 
@@ -286,7 +291,8 @@
                     </div>
                 </div>
 
-						<div class="form-group">
+                        <br />
+					<div class="form-group">
 						<label for="Disk_Type_DropDownList" class="col-sm-2">Disk Type:</label>
 						<div class="col-sm-3">
 						<label for="Disk_Type_DropDownList" class="col-sm-2">
@@ -297,6 +303,7 @@
 							</asp:DropDownList>
 						</label>
                     </div>
+                        
                     <div class="col-sm-offset-3 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvType" runat="server" 
                             ControlToValidate="Disk_Type_DropDownList" CssClass="text-danger" Display="Dynamic" 
@@ -305,20 +312,21 @@
                     </div>
                 </div>
 
-
+                    <br />
                 <div class="form-group">
                     <label for="txtDisk_Name" class="col-sm-2">Disk Name:</label>
                     <div class="col-sm-4">
                         <asp:TextBox ID="txtDisk_Name" runat="server" MaxLength="70" 
                             CssClass="form-control" Width="200px"></asp:TextBox>
                     </div>
+                       
                     <div class="col-sm-offset-2 col-sm-4">
                         <asp:RequiredFieldValidator ID="rfvDisk_Name" runat="server" 
                         ControlToValidate="txtDisk_Name" CssClass="text-danger" Display="Dynamic" 
                         ErrorMessage="Disk  Name is a required field"></asp:RequiredFieldValidator>
                     </div>
                 </div>              		
-				
+				    <br />
 				 <div class="form-group">
                     <label for="Disk_Calendar" class="col-sm-2">Date Released:</label>
                     <div class="col-sm-6">
@@ -326,7 +334,7 @@
                     </div>                   
 				</div>
 				<asp:CustomValidator ID="cvDisk_Calendar" runat="server" ErrorMessage="You must select a date" ClientValidationFunction="CheckDate" />
-			</br>
+			<br />
                 <asp:Button ID="btnAdd" runat="server" Text="Add New Category" 
                     CssClass="btn" OnClick="btnAdd_Click" Height="30px" Width="150px" />
             
